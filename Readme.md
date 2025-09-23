@@ -1,5 +1,9 @@
 # A Sinple Blog Website With Basic Admin Panel And User Panel With MERN
 
+# Admin Email and Password
+email - admin123@gmail.com
+password - Admin123!@#
+
 ## How To Setup The Backend
 1. Clone the repository
 ->  git clone <backend-repo-url>

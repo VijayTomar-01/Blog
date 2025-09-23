@@ -21,18 +21,21 @@ const PORT = process.env.PORT || 4000
 // middlewares
 app.use(express.json());
 
-const allowedOrigins = [
-  process.env.FRONTEND_URL || "http://localhost:5173"
-];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // allow non-browser requests
-    if (allowedOrigins.indexOf(origin) === -1) {
-      return callback(new Error(`CORS not allowed for ${origin}`), false);
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      process.env.FRONTEND_URL,
+      "http://localhost:5173"
+    ];
+
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
     }
-    return callback(null, true);
-  }
+    console.warn(`❌ Blocked by CORS: ${origin}`);
+    return callback(null, false); // don’t throw error
+  },
+  credentials: true
 }));
 app.use((req,res,next)=>{
   console.log(req.method, req.path);

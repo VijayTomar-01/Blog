@@ -15,14 +15,25 @@ const app = express();
 DbConnection();
 seedAdmin()
 
-const PORT = process.env.PORT
-const FRONTEND_PORT = process.env.FRONTEND_PORT
+const PORT = process.env.PORT || 4000
+
 
 // middlewares
 app.use(express.json());
+
+const allowedOrigins = [
+  process.env.FRONTEND_URL || "http://localhost:5173"
+];
+
 app.use(cors({
-  origin: `http://localhost:${FRONTEND_PORT}`
-}))
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // allow non-browser requests
+    if (allowedOrigins.indexOf(origin) === -1) {
+      return callback(new Error(`CORS not allowed for ${origin}`), false);
+    }
+    return callback(null, true);
+  }
+}));
 app.use((req,res,next)=>{
   console.log(req.method, req.path);
   next();
@@ -38,6 +49,6 @@ app.use('/api/comment', commentRouter)
 app.use('/api', dashboardRouter)
 
 app.listen(PORT, ()=>{
-  console.log(`🚀 App is up and running on port: http://localhost:${4000}`);
+  console.log(`🚀 App is up and running on port: ${PORT}`);
 })
 

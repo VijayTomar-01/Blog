@@ -75,6 +75,7 @@ Note - When fetching and setting up headers for auth needed to make sure the id 
 # Backend (Server) 
 [Go to frontend](#frontend)
 
+```
 server/
 ├─ config/
 │  ├─ dbConnection.js
@@ -102,7 +103,7 @@ server/
 ├─ package-lock.json
 ├─ package.json
 └─ server.js
-
+```
 
 ### Dependencies
 -> nodemon
@@ -252,6 +253,8 @@ Apis from user and admin perspective
 
 
 # Frontend
+
+```
 client/
 ├─ public/
 │  └─ vite.svg
@@ -339,6 +342,8 @@ client/
 ├─ package.json
 ├─ README.md
 └─ vite.config.js
+
+```
 
 -> tailwind 
 -> react-router-dom

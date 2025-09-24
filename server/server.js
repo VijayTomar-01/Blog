@@ -20,8 +20,6 @@ const PORT = process.env.PORT || 4000
 
 // middlewares
 app.use(express.json());
-
-
 app.use(cors({
   origin: [
     'https://blogsphere-frontend-project.netlify.app',
@@ -30,13 +28,14 @@ app.use(cors({
   credentials: true
 }))
 
+// to get the method and path when testing api's and integrating frontend
 app.use((req,res,next)=>{
   console.log(req.method, req.path);
   next();
 })
 
 app.get('/', (req,res)=>{
-  res.status(200).json({success: true, message: `Home Page`});
+  res.status(200).json({success: true, message: `Server up on Vercel`});
 })
 
 app.use('/api/user', userRouter);

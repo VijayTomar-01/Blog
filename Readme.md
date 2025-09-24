@@ -1,5 +1,11 @@
 # A Sinple Blog Website With Basic Admin Panel And User Panel With MERN
 
+# Backend Vercel deploy link
+https://blog-sphere-server-pi.vercel.app
+
+# Frontend Netlify deployed link
+https://blogsphere-frontend-project.netlify.app
+
 # Admin Email and Password
 email - admin123@gmail.com
 password - Admin123!@#

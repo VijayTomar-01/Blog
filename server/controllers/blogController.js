@@ -15,6 +15,7 @@ exports.createBlog = async (req,res) => {
       res.status(401).json({success: false, message: "Authentication Required"})
     }
 
+    // Not required a generic one will work
     let emptyFields = [];
     if(!title) {emptyFields.push("title")};
     if(!subTitle) {emptyFields.push("subTitle")};
@@ -55,7 +56,7 @@ exports.createBlog = async (req,res) => {
       category,
       content,
       image: optimizedImageUrl,
-      imageFileId: (await response).fileId,
+      imageFileId: (await response).fileId, // to delete the image from local storage
       authorId: req.user._id,
       isPublished: req.user.role === "admin" ? true : false
     })
@@ -70,9 +71,11 @@ exports.createBlog = async (req,res) => {
 exports.getAllBlogs = async (req,res) => {
   try {
     let blogs;
+    // admin sees all
     if(req.user && req.user?.role === "admin"){
       blogs = await blogModel.find().sort({createdAt: -1}).populate("authorId", "name");
     } else {
+      // others see published and populated authorId with name for frontend 
       blogs = await blogModel.find({isPublished: true}).sort({createdAt: -1}).populate("authorId", "name");
     }
     res.status(200).json({success: true, blogs})
@@ -230,6 +233,7 @@ exports.togglePublish = async (req,res) => {
 
 exports.getDashboard = async (req,res) => {
   try {
+    // added as on initial frontend fetch for user with no data causing error dashboard null
     let dashboard = {
       stats: { totalBlogs: 0, totalDrafts: 0, totalComments: 0 },
       recentBlogs: [],

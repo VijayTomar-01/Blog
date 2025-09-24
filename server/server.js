@@ -38,6 +38,7 @@ app.get('/', (req,res)=>{
   res.status(200).json({success: true, message: `Server up on Vercel`});
 })
 
+
 app.use('/api/user', userRouter);
 app.use('/api/blog', blogRouter);
 app.use('/api/comment', commentRouter)

@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { createContext, useEffect, useReducer } from 'react';
 
-axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
+// axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
+axios.defaults.baseURL = "http://localhost:4000"
 
 // axios.interceptors.request.use((config) => {
 //   const token = localStorage.getItem("token")

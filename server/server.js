@@ -22,21 +22,9 @@ const PORT = process.env.PORT || 4000
 app.use(express.json());
 
 
-app.options("*", cors({
-  origin: (origin, callback) => {
-    const allowedOrigins = [
-      process.env.FRONTEND_URL,
-      "http://localhost:5173"
-    ];
-    if (!origin || allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error("Not allowed by CORS"));
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors({
+  origin: 'http://localhost:5173'
+}))
 
 app.use((req,res,next)=>{
   console.log(req.method, req.path);

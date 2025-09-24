@@ -24,7 +24,7 @@ app.use(express.json());
 
 app.use(cors({
   origin: [
-    'https://marvelous-baklava-afdfaf.netlify.app',
+    'https://blogsphere-frontend-project.netlify.app',
     'http://localhost:5173'
   ],
   credentials: true
